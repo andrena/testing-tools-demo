@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app="clothingTipsApp">
+<head>
+	<script	src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/webjars/angularjs/1.4.6/angular.min.js"></script>
+	<script src="/webjars/angularjs/1.4.6/angular-resource.min.js"></script>
+	<link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<link href="main.css" rel="stylesheet">
+	<script src="clothingTipsApp.js"></script>
+	<script src="clothingTipsService.js"></script>
+	<script src="clothingTipsController.js"></script>
+	<script src="/webjars/angularjs-geolocation/0.1.1/dist/angularjs-geolocation.min.js"></script>
+	<title>Clothing Recommendations</title>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Clothing Recommendations</a>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="weather-main">
+			<div ng-controller="ClothingTipsController as clothingTips">
+				<img id="image" ng-src="{{clothingTips.image}}" />
+				<span>{{clothingTips.city}} {{clothingTips.weatherText}}</span><br />
+			</div>
+		</div>
+	</div>
+</body>
+</html>

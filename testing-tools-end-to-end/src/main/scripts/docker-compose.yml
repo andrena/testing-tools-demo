@@ -1,0 +1,21 @@
+mongodb:
+  image: andrena/testing-tools-mongodb
+  ports:
+   - "27017:27017"
+imageservice:
+  image: andrena/testing-tools-image-service
+  ports:
+   - "8282:8282"
+  links:
+   - mongodb
+weatherservice:
+  image: andrena/testing-tools-weather-service
+  ports:
+   - "8181:8181"
+clothingfrontend:
+  image: andrena/testing-tools-clothing-frontend
+  ports:
+   - "8080:8080"
+  links:
+   - weatherservice
+   - imageservice

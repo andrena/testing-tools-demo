@@ -1,0 +1,6 @@
+server:
+  port: 8080
+  
+weather:
+  service:
+    ip: ${host.runtime.ip}

@@ -1,0 +1,6 @@
+server:
+  port: 8282
+  
+mongodb:
+  service:
+    ip: ${host.runtime.ip}
