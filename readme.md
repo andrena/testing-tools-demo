@@ -95,3 +95,7 @@ Sofern die Anwendung mit den Profilen *docker-image* und *docker-host* gebaut wu
 ### 4.2 manuell
 
 Die einzelnen Teilanwendungen können (ohne die Profile *docker-image* und *docker-host*) gebaut werden und dann "normal" unter der Adresse http://localhost:8080 erreicht werden. Voraussetzung hierfür ist, dass auf dem localhost eine [mongoDB](https://www.mongodb.com)-Instanz verfügbar ist.
+
+
+Dieses Beispielanwendung ist lizenziert unter einer [Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+(c) andrena objects ag
