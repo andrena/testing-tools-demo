@@ -19,17 +19,20 @@
 				</includes>
 			</testResource>
 		</testResources>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 
 	<profiles>
 		<profile>
 			<id>docker-host</id>
-
-			<activation>
-				<os>
-					<family>unix</family>
-				</os>
-			</activation>
 
 			<properties>
 				<script.work.dir>${basedir}/src/main/scripts</script.work.dir>
@@ -103,12 +106,6 @@
 								</configuration>
 							</execution>
 						</executions>
-					</plugin>
-					<plugin>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<skip>true</skip>
-						</configuration>
 					</plugin>
 					<plugin>
 						<artifactId>maven-failsafe-plugin</artifactId>
