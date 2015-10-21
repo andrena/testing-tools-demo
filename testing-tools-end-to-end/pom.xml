@@ -16,6 +16,7 @@
 				<filtering>true</filtering>
 				<includes>
 					<include>**/*.properties</include>
+					<include>**/*.feature</include>
 				</includes>
 			</testResource>
 		</testResources>
@@ -47,7 +48,7 @@
 							<autoPull>true</autoPull>
 							<images>
 								<image>
-									<alias>firefox</alias>
+									<alias>chrome</alias>
 									<name>selenium/standalone-chrome-debug:2.48.1</name>
 									<run>
 										<ports>
@@ -144,6 +145,14 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-remote-driver</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>info.cukes</groupId>
+		    <artifactId>cucumber-junit</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>info.cukes</groupId>
+		    <artifactId>cucumber-java</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
