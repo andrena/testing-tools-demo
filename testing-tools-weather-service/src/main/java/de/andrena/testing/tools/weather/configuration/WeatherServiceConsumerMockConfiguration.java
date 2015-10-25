@@ -20,7 +20,7 @@ public class WeatherServiceConsumerMockConfiguration {
 	
 	private static final int MOCK_WEATHER_CODE = ConditionCode.HOT.getCode();
 	private static final int MOCK_TEMPARATURE = 30;
-	private static final String MOCK_WEATHER_DESCRIPTION = "sunny weater";
+	private static final String MOCK_WEATHER_DESCRIPTION = "sunny weather";
 	private static final String MOCK_WEATHER_LOCATION = "Karlsruhe";
 	private static final String MOCK_WOE_ID = "MOCK_WOE_ID";
 
