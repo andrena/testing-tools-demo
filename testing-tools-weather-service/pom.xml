@@ -28,8 +28,9 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<jvmArguments>-Dspring.profiles.active=mock</jvmArguments>
-					<fork>true</fork>
+					<profiles>
+						<profile>mock</profile>
+					</profiles>
 				</configuration>
 				<executions>
 					<execution>
