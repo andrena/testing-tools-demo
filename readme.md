@@ -90,7 +90,7 @@ Modifiziert zur Buildzeit Ip-Adressen, unter denen die Anwendungskomponenten zur
 
 ### 4.1 Docker Compose
 
-Sofern die Anwendung mit den Profilen *docker-image* und *docker-host* gebaut wurde, kann Sie mittels eines eines [Docker Compose](https://docs.docker.com/compose/)-Files (im Modul **_[testing-tools-end-to-end](#2-5-testing-tools-end-to-end)_**) gestartet werden. Der Zugriff erfolgt dann unter der DOCKER_HOST-Ip und dem Port 8080.
+Sofern die Anwendung mit den Profilen *docker-image* und *docker-host* gebaut wurde, kann Sie mittels eines [Docker Compose](https://docs.docker.com/compose/)-Files (im Modul **_[testing-tools-end-to-end](#2-5-testing-tools-end-to-end)_**) gestartet werden. Der Zugriff erfolgt dann unter der DOCKER_HOST-Ip und dem Port 8080.
 
 ### 4.2 manuell
 
