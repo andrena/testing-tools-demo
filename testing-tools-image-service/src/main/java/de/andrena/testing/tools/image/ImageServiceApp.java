@@ -36,7 +36,7 @@ public class ImageServiceApp {
 		public void init() {
 			try {
 				cleanDatabase();
-				persistWeatherImage("penguin-cold.png", "COLD");
+				persistWeatherImage("penguin-cold.png", "COOL");
 				persistWeatherImage("penguin-neutral.png", "NEUTRAL");
 				persistWeatherImage("penguin-warm.png", "WARM");
 				persistWeatherImage("penguin-raincoat.png", "WET");
