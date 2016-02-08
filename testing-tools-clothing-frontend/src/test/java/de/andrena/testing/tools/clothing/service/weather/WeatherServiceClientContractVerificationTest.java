@@ -15,10 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import au.com.dius.pact.consumer.ConsumerPactBuilder;
 import au.com.dius.pact.consumer.Pact;
 import au.com.dius.pact.consumer.PactProviderRule;
 import au.com.dius.pact.consumer.PactVerification;
+import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
 import au.com.dius.pact.model.PactFragment;
 import de.andrena.testing.tools.clothing.ClothingRecommendationApplication;
 import de.andrena.testing.tools.clothing.ClothingRecommendationApplication.ClothingConfigurationProperties;
@@ -48,7 +48,7 @@ public class WeatherServiceClientContractVerificationTest {
 	}
 
     @Pact(provider=WEATHER_SERVICE_PROVIDER, consumer="weatherServiceClient")
-    public PactFragment createFragment(ConsumerPactBuilder.PactDslWithProvider builder) {
+    public PactFragment createFragment(PactDslWithProvider builder) {
         return builder.uponReceiving("a weather request")
                 .path(String.format("/weather/%s/%s/", LONGITUDE, LATITUDE))
                 .method("GET")

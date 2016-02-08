@@ -49,7 +49,7 @@
 							<images>
 								<image>
 									<alias>chrome</alias>
-									<name>selenium/standalone-chrome-debug:2.48.1</name>
+									<name>selenium/standalone-chrome-debug:${selenium.version}</name>
 									<run>
 										<ports>
 											<port>4444:4444</port>
