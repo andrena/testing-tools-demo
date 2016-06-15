@@ -23,7 +23,7 @@ public class WeatherByLocationServiceImpl implements WeatherByLocationService {
 	}
 
 	private WeatherChannel extractWeatherChannel(WeatherResponse response) {
-		return response.getQuery().getResults().getChannel();
+		return response.getQueryResults().getResults().getChannel();
 	}
 
 }

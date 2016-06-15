@@ -1,31 +1,37 @@
 package de.andrena.testing.tools.weather.consumer.woeid;
 
-import java.math.BigDecimal;
-
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import de.andrena.testing.tools.weather.configuration.ConfigConstants;
 import de.andrena.testing.tools.weather.consumer.constants.ServiceConstants;
+import de.andrena.testing.tools.weather.consumer.woeid.api.WoeIdRequest;
 import de.andrena.testing.tools.weather.consumer.woeid.dto.WoeIdResponse;
+import de.andrena.testing.tools.weather.consumer.woeid.dto.WoeIdResult;
 import de.andrena.testing.tools.weather.consumer.woeid.dto.WoeIdResults;
 
 @Service
 @Profile(ConfigConstants.USE_PRODUCTION)
 public class WhereOnEarthIdServiceImpl implements WhereOnEarthIdService {
 	
-	private String WOEID_QUERY = "select * from geo.placefinder where text=\"{latitude}, {longitude}\" and gflags=\"R\"&format=json";
+	private static final String WOEID_UNAVAILBLE = "unknown";
+	private static final String WOEID_QUERY = "select * from geo.places where text=\"{woeIdRequest}\" &format=json";
 
 	@Override
-	public String getWhereOnEarthId(BigDecimal longitude, BigDecimal latitude) {
-		WoeIdResults result= new RestTemplate().getForObject(ServiceConstants.SERVICE_PROVIDER_URL + WOEID_QUERY , WoeIdResponse.class, latitude.toString() , longitude.toString()).getQuery();
+	public String getWhereOnEarthId(WoeIdRequest woeIdRequest) {
+		WoeIdResults result= new RestTemplate().getForObject(ServiceConstants.SERVICE_PROVIDER_URL + WOEID_QUERY , WoeIdResponse.class, woeIdRequest.toString()).getQueryResults();
 		
 		return extractWoeIdFromResponse(result);
 	}
 
 	private String extractWoeIdFromResponse(WoeIdResults query) {
-		return query.getResults().getResult().getWoeid();
+		WoeIdResult woeIdResult = query.getResults();
+		
+		if(woeIdResult != null && woeIdResult.getPlaces().length > 0) {
+			return woeIdResult.getPlaces()[0].getWoeid();
+		}
+		return WOEID_UNAVAILBLE;
 	}
 
 }

@@ -3,20 +3,22 @@ package de.andrena.testing.tools.weather.consumer.weather.dto;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class WeatherResponse implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private WeatherResults query;
+	@JsonProperty("query")
+	private WeatherResults queryResults;
 
-	public WeatherResults getQuery() {
-		return query;
+	public WeatherResults getQueryResults() {
+		return queryResults;
 	}
 
-	public void setQuery(WeatherResults query) {
-		this.query = query;
+	public void setQueryResults(WeatherResults query) {
+		this.queryResults = query;
 	}
 	
 }

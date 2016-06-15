@@ -1,9 +1,9 @@
 package de.andrena.testing.tools.weather.consumer.woeid;
 
-import java.math.BigDecimal;
+import de.andrena.testing.tools.weather.consumer.woeid.api.WoeIdRequest;
 
 public interface WhereOnEarthIdService {
 
-	String getWhereOnEarthId(BigDecimal longitude, BigDecimal latitude);
+	String getWhereOnEarthId(WoeIdRequest woeIdRequest);
 
 }

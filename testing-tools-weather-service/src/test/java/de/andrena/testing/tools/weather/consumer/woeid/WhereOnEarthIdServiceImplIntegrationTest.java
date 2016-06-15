@@ -1,21 +1,19 @@
 package de.andrena.testing.tools.weather.consumer.woeid;
 
-import static org.junit.Assert.*;
-
-import java.math.BigDecimal;
-
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import de.andrena.testing.tools.weather.consumer.categories.External;
+import de.andrena.testing.tools.weather.consumer.woeid.api.WoeIdRequest;
 
 @Category(External.class)
 public class WhereOnEarthIdServiceImplIntegrationTest {
 	
-	private static final String WOE_ID_KARLSRUHE = "12836182";
+	private static final String WOE_ID_KARLSRUHE = "664942";
 	
 	private WhereOnEarthIdService classUnderTest;
 	
@@ -25,13 +23,21 @@ public class WhereOnEarthIdServiceImplIntegrationTest {
 	}
 
 	@Test
-	public void testGetWhereOnEarthId() throws Exception {
-		BigDecimal longitudeKarlsruhe = new BigDecimal("8.40471");
-		BigDecimal latitudeKarlsruhe = new BigDecimal("49.01464");
+	public void testGetWhereOnEarthIdKarlsruhe() throws Exception {
+		WoeIdRequest request = new WoeIdRequest("Karlsruhe", "Baden-Württemberg", "DE");
 
-		String outcome = classUnderTest.getWhereOnEarthId(longitudeKarlsruhe, latitudeKarlsruhe);
+		String outcome = classUnderTest.getWhereOnEarthId(request);
 		
 		assertThat(outcome, is(WOE_ID_KARLSRUHE));
+	}
+	
+	@Test
+	public void testGetWhereOnEarthIdUnknown() throws Exception {
+		WoeIdRequest request = new WoeIdRequest("", "", "");
+		
+		String outcome = classUnderTest.getWhereOnEarthId(request);
+		
+		assertThat(outcome, is("unknown"));
 	}
 
 }

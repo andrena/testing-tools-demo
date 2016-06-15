@@ -15,7 +15,7 @@ weatherservice:
 clothingfrontend:
   image: andrena/testing-tools-clothing-frontend
   ports:
-   - "8080:8080"
+   - "8843:8843"
   links:
    - weatherservice
    - imageservice

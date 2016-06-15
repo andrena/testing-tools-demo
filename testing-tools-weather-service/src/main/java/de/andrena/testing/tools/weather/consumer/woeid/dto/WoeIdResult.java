@@ -10,15 +10,15 @@ public class WoeIdResult implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@JsonProperty("Result")
-	private WoeId result;
+	@JsonProperty("place")
+	private WoeId[] places;
 
-	public WoeId getResult() {
-		return result;
+	public WoeId[] getPlaces() {
+		return places;
 	}
 
-	public void setResult(WoeId result) {
-		this.result = result;
+	public void setPlaces(WoeId[] places) {
+		this.places = places;
 	}
 	
 }

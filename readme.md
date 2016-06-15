@@ -90,14 +90,16 @@ Modifiziert zur Buildzeit Ip-Adressen, unter denen die Anwendungskomponenten zur
 
 ### 4.1 Docker Compose
 
-Sofern die Anwendung mit den Profilen *docker-image* und *docker-host* gebaut wurde, kann Sie mittels eines [Docker Compose](https://docs.docker.com/compose/)-Files (im Modul **_[testing-tools-end-to-end](#2-5-testing-tools-end-to-end)_**) gestartet werden. Der Zugriff erfolgt dann unter der DOCKER_HOST-Ip und dem Port 8080.
+Sofern die Anwendung mit den Profilen *docker-image* und *docker-host* gebaut wurde, kann Sie mittels eines [Docker Compose](https://docs.docker.com/compose/)-Files (im Modul **_[testing-tools-end-to-end](#2-5-testing-tools-end-to-end)_**) gestartet werden. Der Zugriff erfolgt dann unter der DOCKER_HOST-Ip und dem Port 8843.
 
 ### 4.2 manuell
 
-Die einzelnen Teilanwendungen können (ohne die Profile *docker-image* und *docker-host*) gebaut werden und dann "normal" unter der Adresse http://localhost:8080 erreicht werden. Voraussetzung hierfür ist, dass auf dem localhost eine [mongoDB](https://www.mongodb.com)-Instanz verfügbar ist.
+Die einzelnen Teilanwendungen können (ohne die Profile *docker-image* und *docker-host*) gebaut werden und dann "normal" unter der Adresse htts://localhost:8843 erreicht werden. Voraussetzung hierfür ist, dass auf dem localhost eine [mongoDB](https://www.mongodb.com)-Instanz verfügbar ist.
+
 
 ## 5 Lizenz
 
 Diese Beispielanwendung ist lizenziert unter einer [Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 &copy; andrena objects ag
+

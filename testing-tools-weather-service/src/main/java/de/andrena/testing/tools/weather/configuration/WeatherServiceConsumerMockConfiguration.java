@@ -6,12 +6,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import de.andrena.testing.tools.weather.consumer.geolocation.GeoLocationService;
+import de.andrena.testing.tools.weather.consumer.geolocation.dto.GeoPostalCode;
 import de.andrena.testing.tools.weather.consumer.weather.WeatherByLocationService;
 import de.andrena.testing.tools.weather.consumer.weather.dto.WeatherChannel;
 import de.andrena.testing.tools.weather.consumer.weather.dto.WeatherCondition;
 import de.andrena.testing.tools.weather.consumer.weather.dto.WeatherItem;
 import de.andrena.testing.tools.weather.consumer.weather.dto.WeatherLocation;
 import de.andrena.testing.tools.weather.consumer.woeid.WhereOnEarthIdService;
+import de.andrena.testing.tools.weather.consumer.woeid.api.WoeIdRequest;
 import de.andrena.testing.tools.weather.provider.constants.ConditionCode;
 
 @Configuration
@@ -74,8 +77,18 @@ public class WeatherServiceConsumerMockConfiguration {
 	public WhereOnEarthIdService mockWhereOnEarthIdService() {
 		return new WhereOnEarthIdService() {
 			@Override
-			public String getWhereOnEarthId(BigDecimal longitude, BigDecimal latitude) {
+			public String getWhereOnEarthId(WoeIdRequest request) {
 				return MOCK_WOE_ID;
+			}
+		};
+	}
+	
+	@Bean
+	public GeoLocationService mockGeoNamesService() {
+		return new GeoLocationService() {
+			@Override
+			public GeoPostalCode getGeoLocationBy(BigDecimal longitude, BigDecimal latitude) {
+				return new GeoPostalCode();
 			}
 		};
 	}
