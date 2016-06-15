@@ -94,7 +94,7 @@ Sofern die Anwendung mit den Profilen *docker-image* und *docker-host* gebaut wu
 
 ### 4.2 manuell
 
-Die einzelnen Teilanwendungen können (ohne die Profile *docker-image* und *docker-host*) gebaut werden und dann "normal" unter der Adresse htts://localhost:8843 erreicht werden. Voraussetzung hierfür ist, dass auf dem localhost eine [mongoDB](https://www.mongodb.com)-Instanz verfügbar ist.
+Die einzelnen Teilanwendungen können (ohne die Profile *docker-image* und *docker-host*) gebaut werden und dann "normal" unter der Adresse https://localhost:8843 erreicht werden. Voraussetzung hierfür ist, dass auf dem localhost eine [mongoDB](https://www.mongodb.com)-Instanz verfügbar ist.
 
 
 ## 5 Lizenz
