@@ -17,7 +17,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
@@ -25,7 +25,7 @@ import com.mongodb.gridfs.GridFSDBFile;
 
 import de.andrena.testing.tools.image.configuration.TestConfiguration;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {TestConfiguration.class})
 public class ImageServiceIntegrationTest {
 	

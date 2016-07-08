@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import au.com.dius.pact.consumer.Pact;
 import au.com.dius.pact.consumer.PactProviderRule;
@@ -24,7 +24,7 @@ import de.andrena.testing.tools.clothing.ClothingRecommendationApplication;
 import de.andrena.testing.tools.clothing.ClothingRecommendationApplication.ClothingConfigurationProperties;
 import de.andrena.testing.tools.clothing.service.dto.WeatherClientDto;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @ContextConfiguration(classes= {ClothingRecommendationApplication.class})
 public class WeatherServiceClientContractVerificationTest {
 
