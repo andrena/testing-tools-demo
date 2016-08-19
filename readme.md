@@ -13,7 +13,7 @@ Da der Fokus des Artikels/Vortrags auf Tools und Techniken rund um das Thema Int
 
 ### 1.1 Docker
 
-Sämtliche Builds inklusive Tests bzw. mit aktiven - unter Punkt 3 genannten - [Build-Profilen](#3-build-profile) setzen eine laufende [Docker](https://www.docker.com)-Instanz voraus. Inbesondere müssen der Laufzeitumgebung sämtliche Docker-Umgebungsvariablen (also DOCKER_HOST etc.) bekannt gemacht werden, sofern es sich bei der Docker-Umgebung um eine mit Docker-Machine bereitgestellte Umgebung handelt.
+Sämtliche Builds inklusive Tests bzw. mit aktiven - unter Punkt 3 genannten - [Build-Profilen](#3-build-profile) setzen eine laufende [Docker](https://www.docker.com)-Instanz voraus. Inbesondere müssen der Laufzeitumgebung sämtliche Docker-Umgebungsvariablen (also DOCKER_HOST etc.) bekannt gemacht werden, sofern es sich bei der Docker-Umgebung um eine mit Docker-Machine bereitgestellte Umgebung handelt. Vor dem ersten Build mit aktivierten Docker-Profilen ist einmalig mittels des Befehls _docker network create scripts_default_ ein Docker Netzwerk zu erzeugen.
 
 ### 1.2 Geolocation-Zugriff
 
