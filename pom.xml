@@ -15,22 +15,13 @@
 		<cucumber.version>1.2.4</cucumber.version>
 		<mongo.version>3.2.7</mongo.version>
 		<host.runtime.ip>127.0.0.1</host.runtime.ip>
-		<mongodb.host>${host.runtime.ip}</mongodb.host>
-		<imageservice.host>${host.runtime.ip}</imageservice.host>
-		<weatherservice.host>${host.runtime.ip}</weatherservice.host>
-		<clothingfrontend.host>${host.runtime.ip}</clothingfrontend.host>
+		<mongodb.hostname>mongodb</mongodb.hostname>
+		<imageservice.hostname>imageservice</imageservice.hostname>
+		<weatherservice.hostname>weatherservice</weatherservice.hostname>
+		<clothingfrontend.hostname>clothingfrontend</clothingfrontend.hostname>
 	</properties>
 	
 	<profiles>
-		<profile>
-			<id>docker-environment</id>
-			<properties>
-				<mongodb.host>mongodb</mongodb.host>
-				<imageservice.host>imageservice</imageservice.host>
-				<weatherservice.host>weatherservice</weatherservice.host>
-				<clothingfrontend.host>clothingfrontend</clothingfrontend.host>
-			</properties>	
-		</profile>
 		<profile>
 			<id>docker-machine-environment</id>
 			<build>

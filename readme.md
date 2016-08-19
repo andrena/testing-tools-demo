@@ -84,7 +84,7 @@ Erzeugt für die jeweiligen Komponenten anhand eines Dockerfiles und [Maven-Plug
 
 ### 3.2 docker-environment
 
-Modifiziert zur Buildzeit Host- und Ip-Adressen, unter denen die Anwendungskomponenten zur Laufzeit miteinander kommunizieren. Erforderlich zum Zugriff auf mittels *docker-image* erstellte [Docker](https://www.docker.com)-Images. Sorgt im Modul **_[testing-tools-image-service](#2-2-testing-tools-image-service)_** dafür, dass für Tests "on-the-fly" eine [mongoDB](https://www.mongodb.com)-Instanz gestartet wird.
+Modifiziert zur Buildzeit Host-Adressen, unter denen die Anwendungskomponenten zur Laufzeit miteinander kommunizieren. Erforderlich zum Zugriff auf mittels *docker-image* erstellte [Docker](https://www.docker.com)-Images. Sorgt im Modul **_[testing-tools-image-service](#2-2-testing-tools-image-service)_** dafür, dass für Tests "on-the-fly" eine [mongoDB](https://www.mongodb.com)-Instanz gestartet wird.
 
 ### 3.3 docker-machine-environment
 

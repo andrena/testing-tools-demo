@@ -32,7 +32,7 @@
 							<autoPull>true</autoPull>
 							<images>
 								<image>
-									<alias>${mongodb.host}</alias>
+									<alias>${mongodb.hostname}</alias>
 									<name>${docker.image.prefix}/testing-tools-mongodb</name>
 									<run>
 										<ports>
