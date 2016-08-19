@@ -8,7 +8,7 @@
 	</parent>
 
 	<artifactId>testing-tools-image-service</artifactId>
-
+	
 	<profiles>
 		<profile>
 			<id>docker-image</id>
@@ -22,17 +22,17 @@
 			</build>
 		</profile>
 		<profile>
-			<id>docker-host</id>
+			<id>docker-environment</id>
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>org.jolokia</groupId>
-						<artifactId>docker-maven-plugin</artifactId>
+						<groupId>io.fabric8</groupId>
+  						<artifactId>docker-maven-plugin</artifactId>
 						<configuration>
 							<autoPull>true</autoPull>
 							<images>
 								<image>
-									<alias>mongodb</alias>
+									<alias>${mongodb.host}</alias>
 									<name>${docker.image.prefix}/testing-tools-mongodb</name>
 									<run>
 										<ports>
@@ -66,8 +66,32 @@
 			</build>
 		</profile>
 	</profiles>
+	
 
 	<build>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.png</exclude>
+				</excludes>
+			</testResource>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*.png</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.properties</exclude>
+				</excludes>
+			</testResource>
+		</testResources>
+		
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

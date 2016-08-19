@@ -1,3 +1,3 @@
 docker-compose kill
 
-docker-compose rm --all -f
+docker-compose rm -f

@@ -1,21 +1,23 @@
-mongodb:
-  image: andrena/testing-tools-mongodb
-  ports:
-   - "27017:27017"
-imageservice:
-  image: andrena/testing-tools-image-service
-  ports:
-   - "8282:8282"
-  links:
-   - mongodb
-weatherservice:
-  image: andrena/testing-tools-weather-service
-  ports:
-   - "8181:8181"
-clothingfrontend:
-  image: andrena/testing-tools-clothing-frontend
-  ports:
-   - "8843:8843"
-  links:
-   - weatherservice
-   - imageservice
+version: '2'
+services: 
+  ${mongodb.host}:
+    image: andrena/testing-tools-mongodb
+    ports:
+     - "27017:27017"
+  ${imageservice.host}:
+    image: andrena/testing-tools-image-service
+    ports:
+     - "8282:8282"
+    links:
+     - ${mongodb.host}
+  ${weatherservice.host}:
+    image: andrena/testing-tools-weather-service
+    ports:
+     - "8181:8181"
+  ${clothingfrontend.host}:
+    image: andrena/testing-tools-clothing-frontend
+    ports:
+     - "8843:8843"
+    links:
+     - ${weatherservice.host}
+     - ${imageservice.host}

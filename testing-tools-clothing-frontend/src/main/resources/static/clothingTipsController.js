@@ -17,7 +17,7 @@ clothingTipsApp.controller('ClothingTipsController', function(geolocation, cloth
 	function showRecommendation(position) {
 		$scope.clothingTipsService.get({longitude: position.coords.longitude, latitude: position.coords.latitude}, function(recommendations) {
 			$scope.clothingTips.weatherText = recommendations.temperature + " °C";
-			$scope.clothingTips.image = "http://${host.runtime.ip}:8282/image/" + recommendations.temperatureSpec + "/";
+			$scope.clothingTips.image = "http://${imageservice.host}:8282/image/" + recommendations.temperatureSpec + "/";
 			$scope.clothingTips.city = recommendations.city;
 			$scope.$apply();
 		} );

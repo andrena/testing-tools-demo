@@ -13,7 +13,7 @@ Da der Fokus des Artikels/Vortrags auf Tools und Techniken rund um das Thema Int
 
 ### 1.1 Docker
 
-Sämtliche Builds inklusive Tests bzw. mit aktiven - unter Punkt 3 genannten - [Build-Profilen](#3-build-profile) setzen eine laufende [Docker](https://www.docker.com)-Instanz voraus. Inbesondere müssen der Laufzeitumgebung sämtliche Docker-Umgebungsvariablen (also DOCKER_HOST etc.) bekannt gemacht werden.
+Sämtliche Builds inklusive Tests bzw. mit aktiven - unter Punkt 3 genannten - [Build-Profilen](#3-build-profile) setzen eine laufende [Docker](https://www.docker.com)-Instanz voraus. Inbesondere müssen der Laufzeitumgebung sämtliche Docker-Umgebungsvariablen (also DOCKER_HOST etc.) bekannt gemacht werden, sofern es sich bei der Docker-Umgebung um eine mit Docker-Machine bereitgestellte Umgebung handelt.
 
 ### 1.2 Geolocation-Zugriff
 
@@ -31,7 +31,7 @@ Wrapper-Projekt zum Erstellen eines [mongoDB](https://www.mongodb.com) [Docker](
 
 #### Build
 
-Die Persistenz wird (bei Bedarf) auf dem lokalen Rechner für jeden Buildlauf neu initialisiert. Konkret wird im Rahmen des Buildlaufs mit aktivem Build-Profil *docker-host* der innerhalb **_[testing-tools-mongodb](#2-1-testing-tools-mongodb)_** erzeugte (frisch initialisierte) [Docker](https://www.docker.com)-Container mittels eines [Docker-Maven-Plugins](https://github.com/rhuss/docker-maven-plugin) "on the fly" gestartet und gestoppt. Sofern das Build-Profil *docker-host* nicht aktiviert wurde, wird eine laufende [mongoDB](https://www.mongodb.com)-Instanz auf localhost erwartet. 
+Die Persistenz wird (bei Bedarf) auf dem lokalen Rechner für jeden Buildlauf neu initialisiert. Konkret wird im Rahmen des Buildlaufs mit aktivem Build-Profil *docker-environment* der innerhalb **_[testing-tools-mongodb](#2-1-testing-tools-mongodb)_** erzeugte (frisch initialisierte) [Docker](https://www.docker.com)-Container mittels eines [Docker-Maven-Plugins](https://github.com/fabric8io/docker-maven-plugin) "on the fly" gestartet und gestoppt. Sofern das Build-Profil *docker-environment* nicht aktiviert wurde, wird eine laufende [mongoDB](https://www.mongodb.com)-Instanz auf localhost erwartet. 
 
 #### Tests
 
@@ -66,9 +66,9 @@ Maven-Modul, dass die Anwendung mittels [Selenium WebDriver](http://www.selenium
 
 #### Build
 
-Die Gesamtanwendung wird bei aktivem Profil *docker-host* auf einem Unix-basiertem System mittels [Docker Compose](https://docs.docker.com/compose/) - angesteuert durch das [Exec Maven Plugin](http://www.mojohaus.org/exec-maven-plugin/) - gestartet. 
+Die Gesamtanwendung wird bei aktivem Profil *docker-environment* auf einem Unix-basiertem System mittels [Docker Compose](https://docs.docker.com/compose/) - angesteuert durch das [Exec Maven Plugin](http://www.mojohaus.org/exec-maven-plugin/) - gestartet. 
 Der Build ist in diesem Falle plattform-spezifisch, da Compose zum Zeitpunkt des Artikels noch von keinem Maven-Plugin unterstützt wird. Im Normalfall würde man dies zu vermeiden versuchen und folglich solche Aufgaben auf einen zentralen Build-Server verlagern. 
-Für einen erfolgreichen Build muss die Gesamtanwendung mit den [Build-Profilen](#3-build-profile) *docker-image* und *docker-host* gebaut worden sein. Neben den Voraussetzungen aus [Vorbedingungen](#1-1-docker) muss der Laufzeitumgebung der Pfad zu [Docker Compose](https://docs.docker.com/compose/)  und dem Unix-Sleep-Kommando bekannt sein.
+Für einen erfolgreichen Build muss die Gesamtanwendung mit den [Build-Profilen](#3-build-profile) *docker-image* und *docker-environment* gebaut worden sein. Neben den Voraussetzungen aus [Vorbedingungen](#1-1-docker) muss der Laufzeitumgebung der Pfad zu [Docker Compose](https://docs.docker.com/compose/)  und dem Unix-Sleep-Kommando bekannt sein.
 
 Im Buildablauf wird des weiteren ein [Docker](https://www.docker.com)-Container mit einem [Selenium Grid](https://github.com/SeleniumHQ/selenium/wiki/Grid2) Server initialisiert (nach Start erreichbar unter DOCKER_HOST-Ip:4444/wd/hub/static/resource/hub.html), dessen Chrome Browser die Applikation ansteuert. Eine lokale Browserinstallation ist somit nicht notwendig.
 
@@ -80,21 +80,25 @@ Im Buildablauf wird des weiteren ein [Docker](https://www.docker.com)-Container 
 
 ### 3.1 docker-image
 
-Erzeugt für die jeweiligen Komponenten anhand eines Dockerfiles und [Maven-Plugins](https://github.com/spotify/docker-maven-plugin) ein [Docker](https://www.docker.com)-Image und legt dies in der lokalen Docker-Registry ab. Docker muss im Rahmen des Builds gestartet sein. Das einmalige Zuschalten des Profils ist Voraussetzung dafür, die Anwendung mit Profil *docker-host* bauen und später per [Docker Compose](https://docs.docker.com/compose/) (siehe 4.1) starten zu können.
+Erzeugt für die jeweiligen Komponenten anhand eines Dockerfiles und [Maven-Plugins](https://github.com/spotify/docker-maven-plugin) ein [Docker](https://www.docker.com)-Image und legt dies in der lokalen Docker-Registry ab. Docker muss im Rahmen des Builds gestartet sein. Das einmalige Zuschalten des Profils ist Voraussetzung dafür, die Anwendung mit Profil *docker-environment* bauen und später per [Docker Compose](https://docs.docker.com/compose/) (siehe 4.1) starten zu können.
 
-### 3.2 docker-host
+### 3.2 docker-environment
 
-Modifiziert zur Buildzeit Ip-Adressen, unter denen die Anwendungskomponenten zur Laufzeit miteinander kommunizieren. Erforderlich zum Zugriff auf mittels *docker-image* erstellte [Docker](https://www.docker.com)-Images. Sorgt im Modul **_[testing-tools-image-service](#2-2-testing-tools-image-service)_** dafür, dass für Tests "on-the-fly" eine [mongoDB](https://www.mongodb.com)-Instanz gestartet wird.
+Modifiziert zur Buildzeit Host- und Ip-Adressen, unter denen die Anwendungskomponenten zur Laufzeit miteinander kommunizieren. Erforderlich zum Zugriff auf mittels *docker-image* erstellte [Docker](https://www.docker.com)-Images. Sorgt im Modul **_[testing-tools-image-service](#2-2-testing-tools-image-service)_** dafür, dass für Tests "on-the-fly" eine [mongoDB](https://www.mongodb.com)-Instanz gestartet wird.
+
+### 3.3 docker-machine-environment
+
+Ermittelt für eine mittles Docker-Machine bereitgestellte Umgebung zur Buildzeit die Host-Ip des Docker-Hosts. Dieses Profil ist zusätzlich zum Profil *docker-environment* zu aktivieren. 
 
 ## 4 Starten der Anwendung
 
 ### 4.1 Docker Compose
 
-Sofern die Anwendung mit den Profilen *docker-image* und *docker-host* gebaut wurde, kann Sie mittels eines [Docker Compose](https://docs.docker.com/compose/)-Files (im Modul **_[testing-tools-end-to-end](#2-5-testing-tools-end-to-end)_**) gestartet werden. Der Zugriff erfolgt dann unter der DOCKER_HOST-Ip und dem Port 8843.
+Sofern die Anwendung mit den Profilen *docker-image* und *docker-environment* gebaut wurde, kann Sie mittels eines [Docker Compose](https://docs.docker.com/compose/)-Files (im Modul **_[testing-tools-end-to-end](#2-5-testing-tools-end-to-end)_**) gestartet werden. Der Zugriff erfolgt dann unter der DOCKER_HOST-Ip und dem Port 8843.
 
 ### 4.2 manuell
 
-Die einzelnen Teilanwendungen können (ohne die Profile *docker-image* und *docker-host*) gebaut werden und dann "normal" unter der Adresse https://localhost:8843 erreicht werden. Voraussetzung hierfür ist, dass auf dem localhost eine [mongoDB](https://www.mongodb.com)-Instanz verfügbar ist.
+Die einzelnen Teilanwendungen können (ohne die Profile *docker-image* und *docker-environment*) gebaut werden und dann "normal" unter der Adresse https://localhost:8843 erreicht werden. Voraussetzung hierfür ist, dass auf dem localhost eine [mongoDB](https://www.mongodb.com)-Instanz verfügbar ist.
 
 
 ## 5 Lizenz

@@ -32,7 +32,7 @@ public class MongoDbConfiguration extends AbstractMongoConfiguration {
 	}
 	
 	@Bean
-	@ConfigurationProperties(locations= {"classpath:application.yml"}, prefix="mongodb.service")
+	@ConfigurationProperties(prefix="mongodb.service")
 	public MongoConfigProperties mongoConfigProperties() {
 		return new MongoConfigProperties();
 	}

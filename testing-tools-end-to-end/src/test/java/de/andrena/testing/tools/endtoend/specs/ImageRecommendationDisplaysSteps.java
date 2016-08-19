@@ -65,7 +65,7 @@ public class ImageRecommendationDisplaysSteps {
 	public void imageIsDisplayed() throws Exception {
 		Thread.sleep(10000); //for display purpose
 		
-		assertThat(recommendationPage.imageIsNotLoadingImage(), is(true));
+		assertThat(recommendationPage.imageIsWeatherRecommendationImage(), is(true));
 	}
 	
 }

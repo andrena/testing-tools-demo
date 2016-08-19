@@ -19,7 +19,7 @@ public class ClothingRecommendationApplication {
 		return new ClothingConfigurationProperties();
 	}
 	
-	@ConfigurationProperties(locations= {"classpath:application.yml"}, prefix="weather.service")
+	@ConfigurationProperties(prefix="weather.service")
 	public static class ClothingConfigurationProperties {
 		private String ip;
 

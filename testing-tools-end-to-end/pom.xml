@@ -10,6 +10,30 @@
 	<artifactId>testing-tools-end-to-end</artifactId>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/scripts</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.yml</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.sh</exclude>
+				</excludes>
+				<targetPath>${project.build.directory}/scripts</targetPath>
+			</resource>
+			<resource>
+				<directory>src/main/scripts</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*.sh</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.yml</exclude>
+				</excludes>
+				<targetPath>${project.build.directory}/scripts</targetPath>
+			</resource>
+		</resources>
 		<testResources>
 			<testResource>
 				<directory>src/test/resources</directory>
@@ -33,17 +57,17 @@
 
 	<profiles>
 		<profile>
-			<id>docker-host</id>
+			<id>docker-environment</id>
 
 			<properties>
-				<script.work.dir>${basedir}/src/main/scripts</script.work.dir>
+				<script.work.dir>${basedir}/target/scripts</script.work.dir>
 			</properties>
 
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>org.jolokia</groupId>
-						<artifactId>docker-maven-plugin</artifactId>
+						<groupId>io.fabric8</groupId>
+  						<artifactId>docker-maven-plugin</artifactId>
 						<configuration>
 							<autoPull>true</autoPull>
 							<images>
@@ -57,6 +81,10 @@
 										<wait>
 											<time>2000</time>
 										</wait>
+										<network>
+											<mode>custom</mode>
+   											<name>scripts_default</name>
+										</network>
 									</run>
 								</image>
 							</images>
@@ -86,6 +114,22 @@
 							<workingDirectory>${script.work.dir}</workingDirectory>
 						</configuration>
 						<executions>
+							 <execution>
+			                    <id>script-chmod</id>
+			                    <phase>pre-integration-test</phase>
+			                    <goals>
+			                        <goal>exec</goal>
+			                    </goals>
+			                    <configuration>
+			                        <executable>chmod</executable>
+			                        <arguments>
+			                            <argument>+x</argument>
+			                            <argument>startup.sh</argument>
+			                            <argument>shutdown.sh</argument>
+			                            <argument>clean_docker_vm.sh</argument>
+			                        </arguments>
+			                    </configuration>
+			                </execution>
 							<execution>
 								<id>start-app</id>
 								<phase>pre-integration-test</phase>

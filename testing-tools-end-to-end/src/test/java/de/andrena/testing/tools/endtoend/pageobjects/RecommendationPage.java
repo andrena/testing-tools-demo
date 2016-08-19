@@ -14,8 +14,8 @@ public class RecommendationPage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public boolean imageIsNotLoadingImage() {
-		return !getImageSource().contains("loading");
+	public boolean imageIsWeatherRecommendationImage() {
+		return getImageSource().contains("image");
 	}
 
 	private String getImageSource() {
