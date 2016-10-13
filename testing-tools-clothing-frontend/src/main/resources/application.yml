@@ -1,5 +1,9 @@
 server:
-  port: 8080
+  port: 8843
+  ssl:
+    key-store: classpath:keystore.jks
+    key-store-password: secret
+    key-password: another-secret
   
 weather:
   service:
